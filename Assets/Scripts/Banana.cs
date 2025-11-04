@@ -3,7 +3,7 @@ using UnityEngine;
 public class Banana : Weapon
 
 {
-    public float speed { get; set; }
+    [SerializeField] private float speed;
     public override void Move()
     {
         float newX = transform.position.x + speed * Time.fixedDeltaTime;

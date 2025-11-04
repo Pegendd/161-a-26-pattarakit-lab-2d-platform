@@ -4,9 +4,7 @@ public abstract class Weapon : MonoBehaviour
 {
     public int damage;
     public IShootable Shooter;
-
     public abstract void Move();
-
     public abstract void OnHitWith(Character character);
 
 
@@ -31,21 +29,7 @@ public abstract class Weapon : MonoBehaviour
         if (character != null)
         {
             OnHitWith(character);
-            
-            Destroy(this.gameObject,5f);
+            Destroy(this.gameObject, 5f);
         }
     }
-
-
-
-
-    void Start()
-    {
-        
-    }
-
-
-
-
-
 }
