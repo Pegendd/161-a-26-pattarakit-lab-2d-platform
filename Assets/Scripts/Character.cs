@@ -2,40 +2,45 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+
     private int health;
-    public int Health { get => health;
-                        set => health = (value < 0) ? 0 : value; }
+    public int Health { get => health; set => health = (value < 0)? 0 : value; }
 
     protected Animator anim;
     protected Rigidbody2D rb;
 
+     
+     public void Intialize(int starthealth)
+    {
+        Health = starthealth;
+        Debug.Log($"{this.name} initial Health: {this.Health}.");
+
+        anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
+    }
+
     public void TakeDamage(int damage)
     {
         Health -= damage;
-        Debug.Log($"{this.name} took damage {damage}. Current Health: {Health}");
+        Debug.Log($"{ this.name} took damage {damage}. Current Health {Health}");
+
+        IsDead();
     }
 
     public bool IsDead()
     {
-        if (health <= 0)
+        if(Health <= 0)
         {
             Destroy(this.gameObject);
-            Debug.Log($"{this.name} is dead! and destory!");
+            Debug.Log($"{this.name} is dead and destroy");
             return true;
         }
-        else return false;
+        else
+        {
+            return false;
 
-    }
-
-    void Start()
-    {
-    
+        }
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
