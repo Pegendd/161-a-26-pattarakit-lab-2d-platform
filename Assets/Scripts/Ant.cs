@@ -9,10 +9,10 @@ public class Ant : Enemy
 
     void Start()
     {
-        base.Intialize(20);
+        base.Intialize(100);
         DamageHit = 20;
 
-        velocity = new Vector2(-1, 0);
+        velocity = new Vector2(-1.0f, 0.0f);
         
     }
 

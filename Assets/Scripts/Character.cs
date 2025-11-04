@@ -1,10 +1,16 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Character : MonoBehaviour
 {
-
+    [SerializeField] protected HealthBar hpBar;
+    private float maxHp;
     private int health;
-    public int Health { get => health; set => health = (value < 0)? 0 : value; }
+    public int Health 
+    { 
+        get => health;
+        set => health = (value < 0)? 0 : value; 
+    }
 
     protected Animator anim;
     protected Rigidbody2D rb;
@@ -12,6 +18,7 @@ public class Character : MonoBehaviour
      
      public void Intialize(int starthealth)
     {
+        maxHp = starthealth;
         Health = starthealth;
         Debug.Log($"{this.name} initial Health: {this.Health}.");
 
@@ -22,8 +29,12 @@ public class Character : MonoBehaviour
     public void TakeDamage(int damage)
     {
         Health -= damage;
-        Debug.Log($"{ this.name} took damage {damage}. Current Health {Health}");
+        Debug.Log($"{this.name} took damage {damage}. Current Health {Health}");
 
+        if (hpBar != null)
+        {
+            hpBar.UpdateHealthBar(Health, maxHp);
+        }
         IsDead();
     }
 

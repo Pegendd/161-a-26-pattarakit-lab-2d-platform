@@ -1,8 +1,8 @@
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Player : Character , IShootable
+public class Player : Character, IShootable
 {
-    [field : SerializeField]public GameObject Bullet { get; set; }
+    [field: SerializeField] public GameObject Bullet { get; set; }
     [field: SerializeField] public Transform ShootPoint { get; set; }
     public float ReloadTime { get; set; }
     public float WaitTime { get; set; }
@@ -17,7 +17,7 @@ public class Player : Character , IShootable
 
     public void OnHitWith(Enemy enemy)
     {
-       TakeDamage(enemy.DamageHit);
+        TakeDamage(enemy.DamageHit);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -27,7 +27,7 @@ public class Player : Character , IShootable
         {
             OnHitWith(enemy);
             Debug.Log($"{this.name} Hit with {enemy.name}");
-        }   
+        }
     }
 
     // Update is called once per frame
@@ -43,14 +43,14 @@ public class Player : Character , IShootable
 
     public void Shoot()
     {
-        if (Input.GetButtonDown("Fire1") && WaitTime >= ReloadTime) 
+        if (Input.GetButtonDown("Fire1") && WaitTime >= ReloadTime)
         {
             var bullet = Instantiate(Bullet, ShootPoint.position, Quaternion.identity);
             Banana banana = bullet.GetComponent<Banana>();
-            if (banana != null)             
-                banana.InitWeapon(20,this);
+            if (banana != null)
+                banana.InitWeapon(20, this);
 
-            WaitTime = 0.0f;          
+            WaitTime = 0.0f;
         }
     }
 }

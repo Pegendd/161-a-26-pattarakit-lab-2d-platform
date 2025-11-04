@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class crocodile : Enemy , IShootable
+public class Crocodile : Enemy , IShootable
 {   
     [SerializeField]private float atkRange;
     public Player player;
